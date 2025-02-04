@@ -1,0 +1,143 @@
+{
+  "configVersion": 1,
+  "timestamp": 1738683209924,
+  "index": "/angular_jj2/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/angular_jj2/151.8df6724fb98a1068.js",
+        "/angular_jj2/662.9d1984e997356124.js",
+        "/angular_jj2/710.b55ff82756259e8a.js",
+        "/angular_jj2/8.ef646d12c5036d24.js",
+        "/angular_jj2/842.7450d7c590b961c8.js",
+        "/angular_jj2/favicon.ico",
+        "/angular_jj2/index.html",
+        "/angular_jj2/main.91c1d25c61ea61b0.js",
+        "/angular_jj2/polyfills.97d8e7b54c0240b9.js",
+        "/angular_jj2/runtime.929ad2e8dff29b42.js",
+        "/angular_jj2/styles.5c727b753e0cd9eb.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/angular_jj2/assets/images/backgrounds/login-bg.jpg",
+        "/angular_jj2/assets/images/backgrounds/rupee.png",
+        "/angular_jj2/assets/images/blog/blog-img1.jpg",
+        "/angular_jj2/assets/images/blog/blog-img2.jpg",
+        "/angular_jj2/assets/images/blog/blog-img3.jpg",
+        "/angular_jj2/assets/images/logos/2.png",
+        "/angular_jj2/assets/images/logos/2.svg",
+        "/angular_jj2/assets/images/logos/jj_sf.png",
+        "/angular_jj2/assets/images/logos/logo-icon.svg",
+        "/angular_jj2/assets/images/logos/logo.svg",
+        "/angular_jj2/assets/images/products/Planilla de inspeccion.jpg",
+        "/angular_jj2/assets/images/products/dash-prd-1.jpg",
+        "/angular_jj2/assets/images/products/dash-prd-2.jpg",
+        "/angular_jj2/assets/images/products/dash-prd-3.jpg",
+        "/angular_jj2/assets/images/products/dash-prd-4.jpg",
+        "/angular_jj2/assets/images/products/plan.jpg",
+        "/angular_jj2/assets/images/products/planilla (1).jpg",
+        "/angular_jj2/assets/images/products/planilla.jpg",
+        "/angular_jj2/assets/images/products/s1.jpg",
+        "/angular_jj2/assets/images/products/s2.jpg",
+        "/angular_jj2/assets/images/products/s3.jpg",
+        "/angular_jj2/assets/images/products/s4.jpg",
+        "/angular_jj2/assets/images/products/tablet.jpg",
+        "/angular_jj2/assets/images/profile/user-1.jpg",
+        "/angular_jj2/assets/images/profile/user-10.jpg",
+        "/angular_jj2/assets/images/profile/user-2.jpg",
+        "/angular_jj2/assets/images/profile/user-3.jpg",
+        "/angular_jj2/assets/images/profile/user-4.jpg",
+        "/angular_jj2/assets/images/profile/user-5.jpg",
+        "/angular_jj2/assets/images/profile/user-6.jpg",
+        "/angular_jj2/assets/images/profile/user-7.jpg",
+        "/angular_jj2/assets/images/profile/user-8.jpg",
+        "/angular_jj2/assets/images/profile/user-9.jpg",
+        "/angular_jj2/assets/images/svgs/facebook-icon.svg",
+        "/angular_jj2/assets/images/svgs/google-icon.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/angular_jj2/151.8df6724fb98a1068.js": "94dbb879c48d36870a9865a197eeda5117bfa184",
+    "/angular_jj2/662.9d1984e997356124.js": "be0b93430205a01a5f7f0b8e9efdd985618a55a2",
+    "/angular_jj2/710.b55ff82756259e8a.js": "21e616f00ba045c28bd54d548e3b489ef552b8c2",
+    "/angular_jj2/8.ef646d12c5036d24.js": "e5657524e2679aa0af4fd8fe7f78bb181958db95",
+    "/angular_jj2/842.7450d7c590b961c8.js": "4e0f1a1c1e0b0b3d92f1c8bb47a697b53bcd5ade",
+    "/angular_jj2/assets/images/backgrounds/login-bg.jpg": "0738fd6dd96941ce35700261bea4fbb89648a9af",
+    "/angular_jj2/assets/images/backgrounds/rupee.png": "0a824bdc70e87d54127279c07897143347b611ec",
+    "/angular_jj2/assets/images/blog/blog-img1.jpg": "4d99d08fc5e6c0307d06efccbdc924ad3aaf0dcc",
+    "/angular_jj2/assets/images/blog/blog-img2.jpg": "d7b3f375fbd9790ee5d125ac1808795f8ad3d566",
+    "/angular_jj2/assets/images/blog/blog-img3.jpg": "54571db064ad6d358a4bcb72f3e8b89c4eced1f1",
+    "/angular_jj2/assets/images/logos/2.png": "182f91a3886b45803b57ac6f5aa8428155346375",
+    "/angular_jj2/assets/images/logos/2.svg": "e538129eed27a64a6486e9e694362db5c9d3c91e",
+    "/angular_jj2/assets/images/logos/jj_sf.png": "2ad0be440607710c7b304f1e26874e0d6fbdbe5c",
+    "/angular_jj2/assets/images/logos/logo-icon.svg": "c86eb5ab7db705ad5b99808b25f60caffe657258",
+    "/angular_jj2/assets/images/logos/logo.svg": "63a1146aff7f6febfd4facc7bb1f661d46a0da7e",
+    "/angular_jj2/assets/images/products/Planilla de inspeccion.jpg": "3e48904e7a63c64ecb0661ecd21b0d013f0a1d9a",
+    "/angular_jj2/assets/images/products/dash-prd-1.jpg": "6ace542372afda280a46f1a355dca832989268cd",
+    "/angular_jj2/assets/images/products/dash-prd-2.jpg": "55004072d9314b70c542908752844d5cd2e7ec81",
+    "/angular_jj2/assets/images/products/dash-prd-3.jpg": "96cfca367626e086e37721bdd5096d4a0a050587",
+    "/angular_jj2/assets/images/products/dash-prd-4.jpg": "7976a3c79e63ed9514b2f91ab1e0a26d35a70144",
+    "/angular_jj2/assets/images/products/plan.jpg": "11f1d64d05a420c80da77dbe6debe3f78def9147",
+    "/angular_jj2/assets/images/products/planilla (1).jpg": "126d617d0a9d25c0cac65f6ba3a109aa9673c936",
+    "/angular_jj2/assets/images/products/planilla.jpg": "381fa57657a399361157d835d518323276eb05c7",
+    "/angular_jj2/assets/images/products/s1.jpg": "445b77c11cb4b063cb4b9cb34ce8644556b8370d",
+    "/angular_jj2/assets/images/products/s2.jpg": "f07a0535fdba89f828d046ebcf1fa83a2a7e2999",
+    "/angular_jj2/assets/images/products/s3.jpg": "0d8c6c2672c60cebe0316b8753412be97467761f",
+    "/angular_jj2/assets/images/products/s4.jpg": "df0d84a6ffb0be36593a0381ed9be0177374d009",
+    "/angular_jj2/assets/images/products/tablet.jpg": "1f8ce4a01f3097c763ca41b45ba9fe8229a1575d",
+    "/angular_jj2/assets/images/profile/user-1.jpg": "3f17bc5b0857a7039f46ebc49da2c244bb89f375",
+    "/angular_jj2/assets/images/profile/user-10.jpg": "3234ec5504b15c4e7e9976f590434ae25b58606b",
+    "/angular_jj2/assets/images/profile/user-2.jpg": "e238bfbc3ed904e464726ea91cebbe3d7ca919ca",
+    "/angular_jj2/assets/images/profile/user-3.jpg": "5910bb9b0fdb147ec377d5150ee57e06ee10b056",
+    "/angular_jj2/assets/images/profile/user-4.jpg": "4e56569301e323d6e33fe44c41965c0a12edf0fe",
+    "/angular_jj2/assets/images/profile/user-5.jpg": "530d1c403f0ba7dee713f70d552b5acc0e05ef6e",
+    "/angular_jj2/assets/images/profile/user-6.jpg": "2a4f20e7857a2d7653360c666c628061fbdb6480",
+    "/angular_jj2/assets/images/profile/user-7.jpg": "4d857cc7fe1f43485810f6dd335a29a4ad91669a",
+    "/angular_jj2/assets/images/profile/user-8.jpg": "dafd7d22f91305b3ef4b62ffb1adf3d9d32c241d",
+    "/angular_jj2/assets/images/profile/user-9.jpg": "95712fadc92a3136b941fa48f0d09acc7f23e701",
+    "/angular_jj2/assets/images/svgs/facebook-icon.svg": "478252e94effa03caeb8759f2a5f40938fb5b3d3",
+    "/angular_jj2/assets/images/svgs/google-icon.svg": "ceec9fd3a8cb629bd3339cf4a00ea5db6cfd2ad4",
+    "/angular_jj2/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/angular_jj2/index.html": "aae6bf7447460907e032cb07ac01276ff8bfa40e",
+    "/angular_jj2/main.91c1d25c61ea61b0.js": "9e522690c90ad202157b9faf105d1ccd81205cb5",
+    "/angular_jj2/polyfills.97d8e7b54c0240b9.js": "84684ddc5b076eab9fb190279bd0fb8d70fc7f50",
+    "/angular_jj2/runtime.929ad2e8dff29b42.js": "0cc8fa15268d9bfeaaa5cfe39138b92b3ee5f573",
+    "/angular_jj2/styles.5c727b753e0cd9eb.css": "534d593fc17458b7e0458d1568acf922b2591900"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
