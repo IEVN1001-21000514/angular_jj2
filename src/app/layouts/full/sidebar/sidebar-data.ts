@@ -2,20 +2,20 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    navCap: 'Home',
+    navCap: 'Inicio',
   },
   {
-    displayName: 'Dashboard',
-    iconName: 'solar:widget-add-line-duotone',
+    displayName: 'Inicio',
+    iconName: 'mynaui:home-solid',
     route: '/dashboard',
   },
   {
-    navCap: 'Ui Components',
+    navCap: 'Opciones',
     divider: true
   },
   {
     displayName: 'Badge',
-    iconName: 'solar:archive-minimalistic-line-duotone',
+    iconName: 'solar:add-folder-bolder',
     route: '/ui-components/badge',
   },
   {
