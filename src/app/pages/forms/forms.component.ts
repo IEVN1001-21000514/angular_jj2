@@ -29,7 +29,6 @@ interface Food {
   ],
   templateUrl: './forms.component.html',
 })
-
 export class AppFormsComponent {
   country: Food[] = [
     { value: 'steak-0', viewValue: 'USA' },

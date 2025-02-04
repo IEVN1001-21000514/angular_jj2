@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './nav-item.component.html',
   styleUrls: [],
 })
+
 export class AppNavItemComponent implements OnChanges {
   @Output() toggleMobileLink: any = new EventEmitter<void>();
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>();

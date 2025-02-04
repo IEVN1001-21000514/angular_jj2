@@ -44,6 +44,11 @@ export const navItems: NavItem[] = [
     route: '/ui-components/forms',
   },
   {
+    displayName: 'Registro Sliders',
+    iconName: 'solar:file-text-line-duotone',
+    route: '/ui-components/registroSliders',
+  },
+  {
     displayName: 'Tables',
     iconName: 'solar:tablet-line-duotone',
     route: '/ui-components/tables',
