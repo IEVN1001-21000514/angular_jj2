@@ -8,7 +8,9 @@ import { AppMenuComponent } from './menu/menu.component';
 import { AppTooltipsComponent } from './tooltips/tooltips.component';
 import { AppFormsComponent } from './forms/forms.component';
 import { AppTablesComponent } from './tables/tables.component';
+import { AppTables2Component } from './planProduccion/tables.component';
 import { AppForms2Component } from './registroSliders/forms.component';
+import { AppForms3Component } from './planillaInspeccion/forms.component';
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -43,8 +45,16 @@ export const UiComponentsRoutes: Routes = [
         component: AppForms2Component,
       },
       {
+        path: 'planillaInspeccion',
+        component: AppForms3Component,
+      },
+      {
         path: 'tables',
         component: AppTablesComponent,
+      },
+      {
+        path: 'planProduccion',
+        component: AppTables2Component,
       },
     ],
   },

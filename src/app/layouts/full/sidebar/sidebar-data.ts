@@ -13,7 +13,7 @@ export const navItems: NavItem[] = [
     navCap: 'Opciones',
     divider: true
   },
-  {
+ /*  {
     displayName: 'Badge',
     iconName: 'solar:add-folder-bolder',
     route: '/ui-components/badge',
@@ -41,17 +41,27 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Forms',
     iconName: 'solar:file-text-line-duotone',
-    route: '/ui-components/forms',
-  },
+    route: '/ui-components/forms', 
+  },*/
   {
     displayName: 'Registro Sliders',
-    iconName: 'solar:file-text-line-duotone',
+    iconName: 'eos-icons:system-re-registered',
     route: '/ui-components/registroSliders',
   },
   {
+    displayName: 'Planilla Inspeccion',
+    iconName: 'material-symbols-light:fact-check-outline',
+    route: '/ui-components/planillaInspeccion',
+  },
+  /* {
     displayName: 'Tables',
     iconName: 'solar:tablet-line-duotone',
     route: '/ui-components/tables',
+  }, */
+  {
+    displayName: 'Plan Produccion',
+    iconName: 'mingcute:inspect-line',
+    route: '/ui-components/planProduccion',
   },
   {
     navCap: 'Auth',

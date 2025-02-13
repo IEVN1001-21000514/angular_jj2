@@ -8,14 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
-
-
-interface Sliders {
+interface Defectos {
   value: string;
 }
 
-interface Secuencia {
-  value: number;
+interface Sliders {
+  value: string;
 }
 
 @Component({
@@ -35,7 +33,37 @@ interface Secuencia {
   templateUrl: './forms.component.html',
 })
 
-export class AppForms2Component {
+export class AppForms3Component {
+
+  fechaHoraActual:string='';
+
+  constructor(){
+    this.actualizarFechaHora();
+  };
+
+  actualizarFechaHora(){
+    setInterval(() => {
+      const ahora = new Date();
+      this.fechaHoraActual = ahora.toLocaleString();
+    },1000);
+  }
+  
+  defecto: Defectos[] = [
+    { value: '' },
+    { value: 'Golpes de tubo' },
+    { value: 'Mal dimensionado de tubo' },
+    { value: 'Exceso de soldadura' },
+    { value: 'Rebaba de soldadura' },
+    { value: 'Poro abierto de soldadura' },
+    { value: 'Falta de soldadura' },
+    { value: 'Platina doblada' },
+    { value: 'Escurrimiento de agua' },
+    { value: 'Rayada de pintura' },
+    { value: 'Falta de pintura' },
+    { value: 'Error en empaque' },
+    { value: 'Otro' }
+];
+
   slider:Sliders[] = [
     { value: '' },
     { value: 'Bajaj Dominar' },
@@ -66,26 +94,8 @@ export class AppForms2Component {
 
   selectedSlider= this.slider[0].value;
 
-  sec: Secuencia[] = [
-    { value: 1},
-    { value: 2},
-    { value: 3},
-    { value: 4},
-    { value: 5},
-    { value: 6},
-    { value: 7},
-    { value: 8},
-    { value: 9},
-    { value: 10},
-    { value: 11},
-    { value: 12},
-    { value: 13},
-    { value: 14},
-    { value: 15},
-    { value: 16},
-    { value: 17},
-  ];
+  selectedDefecto= this.defecto[0].value;
 
-  selectedSec = this.sec[0].value;
+  
 
 }
