@@ -8,6 +8,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 
 @Component({
   selector: 'app-tooltips',
@@ -19,18 +21,33 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     ReactiveFormsModule,
     CdkScrollable,
     MatButtonModule,
-    MatTooltipModule, MatCardModule, MatInputModule, MatCheckboxModule
+    MatTooltipModule, MatCardModule, MatInputModule, MatCheckboxModule,
   ],
   templateUrl: './tooltips.component.html',
 })
 export class AppTooltipsComponent {
-  //  disabled
-  disabled = new FormControl(false);
+  
+  pedidos = [
+    { cliente: "Juan Pérez", tamano: "Grande", ingredientes: "Pepperoni, Queso", cantidad: 2, subtotal: "$250" },
+    { cliente: "María López", tamano: "Mediana", ingredientes: "Jamón, Champiñones", cantidad: 1, subtotal: "$180" },
+    { cliente: "Carlos Ruiz", tamano: "Chica", ingredientes: "Hawaiana", cantidad: 3, subtotal: "$300" }
+  ];
 
-  // show and hide
-  showDelay = new FormControl(1000);
-  hideDelay2 = new FormControl(2000);
+  generarPDF() {
+    const doc = new jsPDF();
 
-  // change message
-  message = new FormControl('Info about the action');
+    // Título del documento
+    doc.setFontSize(18);
+    doc.text("Resumen del Pedido", 70, 15);
+
+    // Agregar tabla con los datos
+    autoTable(doc, {
+      head: [["Cliente", "Tamaño", "Ingredientes", "Cantidad", "Subtotal"]],
+      body: this.pedidos.map(pedido => [pedido.cliente, pedido.tamano, pedido.ingredientes, pedido.cantidad, pedido.subtotal]),
+      startY: 30
+    });
+
+    // Guardar y descargar el PDF
+    doc.save("pedido.pdf");
+  }
 }

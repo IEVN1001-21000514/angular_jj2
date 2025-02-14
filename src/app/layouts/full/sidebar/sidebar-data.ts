@@ -32,12 +32,12 @@ export const navItems: NavItem[] = [
     displayName: 'Menu',
     iconName: 'solar:file-text-line-duotone',
     route: '/ui-components/menu',
-  },
+  },*/
   {
     displayName: 'Tooltips',
     iconName: 'solar:text-field-focus-line-duotone',
     route: '/ui-components/tooltips',
-  },
+  },/*
   {
     displayName: 'Forms',
     iconName: 'solar:file-text-line-duotone',

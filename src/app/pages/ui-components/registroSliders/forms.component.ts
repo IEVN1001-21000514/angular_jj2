@@ -84,7 +84,7 @@ export class AppForms2Component {
     if (existeSecuencia) {
       this.alertaSecuencia = true;
       setTimeout(() => (this.alertaSecuencia = false), 5000);
-      alert('La secuencia ya está asignada a otro pedido. Elige otra.');
+      //alert('La secuencia ya está asignada a otro pedido. Elige otra.');
       return;
     }
 

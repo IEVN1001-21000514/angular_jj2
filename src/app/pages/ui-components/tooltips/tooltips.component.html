@@ -1,181 +1,25 @@
-<mat-card class="cardWithShadow theme-card">
-  <mat-card-header>
-    <mat-card-title class="m-b-0">Tooltips</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="b-t-1">
-    <div class="row">
-      <div class="col-lg-4 col-sm-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Basic</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <button
-              mat-flat-button
-              color="primary"
-              matTooltip="Info about the action"
-            >
-              Button
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Uppercase</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <button
-              mat-flat-button
-              color="primary"
-              matTooltip="Info about the action"
-              matTooltipClass="text-uppercase"
-            >
-              Button
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Disabled on click</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <button
-              mat-flat-button
-              color="primary"
-              matTooltip="Info about the action"
-              [matTooltipDisabled]="disabled.value"
-              class="m-r-8"
-            >
-              Action
-            </button>
+<div class="container">
+  <h2>Lista de Pedidos</h2>
+  <table class="pedido-table">
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Tamaño</th>
+        <th>Ingredientes</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pedido of pedidos">
+        <td>{{ pedido.cliente }}</td>
+        <td>{{ pedido.tamano }}</td>
+        <td>{{ pedido.ingredientes }}</td>
+        <td>{{ pedido.cantidad }}</td>
+        <td>{{ pedido.subtotal }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-            <mat-checkbox
-              [formControl]="disabled"
-              class="example-disabled-checkbox"
-            >
-              Tooltip disabled
-            </mat-checkbox>
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div class="col-lg-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Position</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <button
-              mat-flat-button
-              color="primary"
-              #tooltip="matTooltip"
-              matTooltip="Info about the action"
-              matTooltipPosition="below"
-              matTooltipHideDelay="100000"
-            >
-              Below
-            </button>
-            <button
-              mat-flat-button
-              color="accent"
-              #tooltip="matTooltip"
-              matTooltip="Info about the action"
-              matTooltipPosition="above"
-              class="m-l-8"
-              matTooltipHideDelay="100000"
-            >
-              Above
-            </button>
-            <button
-              mat-flat-button
-              color="warn"
-              #tooltip="matTooltip"
-              matTooltip="Info about the action"
-              matTooltipPosition="left"
-              class="m-l-8"
-              matTooltipHideDelay="100000"
-            >
-              Left
-            </button>
-            <button
-              mat-flat-button
-              color="primary"
-              #tooltip="matTooltip"
-              matTooltip="Info about the action"
-              matTooltipPosition="right"
-              class="m-l-8"
-              matTooltipHideDelay="100000"
-            >
-              Right
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div class="col-lg-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Show and Hide</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <div class="row">
-              <div class="col-sm-4">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Show delay</mat-label>
-                  <input matInput type="number" [formControl]="showDelay" />
-                  <mat-hint>milliseconds</mat-hint>
-                </mat-form-field>
-              </div>
-              <div class="col-sm-4">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>Hide delay</mat-label>
-                  <input matInput type="number" [formControl]="hideDelay2" />
-                  <mat-hint>milliseconds</mat-hint>
-                </mat-form-field>
-              </div>
-              <div class="col-sm-4">
-                <button
-                  mat-flat-button
-                  color="primary"
-                  matTooltip="Info about the action"
-                  [matTooltipShowDelay]="showDelay.value"
-                  [matTooltipHideDelay]="hideDelay2.value"
-                >
-                  Action
-                </button>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <div class="col-lg-4 col-sm-6">
-        <mat-card class="b-1 shadow-none">
-          <mat-card-header>
-            <mat-card-title>Change Message</mat-card-title>
-          </mat-card-header>
-          <mat-card-content class="b-t-1">
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Tooltip message</mat-label>
-              <input matInput  [formControl]="message" />
-            </mat-form-field>
-
-            <button
-              mat-flat-button
-              color="primary"
-              [matTooltip]="message.value || ''"
-              aria-label="Button that displays a tooltip with a custom message"
-            >
-              Action
-            </button>
-          </mat-card-content>
-        </mat-card>
-      </div>
-      
-    </div>
-  </mat-card-content>
-</mat-card>
+  <button (click)="generarPDF()">Descargar PDF</button>
+</div>
