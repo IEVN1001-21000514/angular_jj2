@@ -3,46 +3,39 @@
     <mat-card-title class="m-b-0">Registro de pedido de sliders</mat-card-title>
   </mat-card-header>
   <mat-card-content class="b-t-1">
-    <form>
-      
+    <form (ngSubmit)="onAgregar(cantidad)">
       <div class="row">
-        
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Modelo Slider</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(value)]="selectedSlider">
-              @for(option of slider; track option.value) {
-              <mat-option [value]="option.value">{{
-                option.value
-              }}</mat-option>
-              }
+            <mat-select [(ngModel)]="selectedSlider" name="modelo">
+              <mat-option *ngFor="let option of slider" [value]="option.value">
+                {{ option.value }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-lg-6">
-          <!-- input -->
           <mat-label class="f-w-600 m-b-8 d-block">Cantidad</mat-label>
-          <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput type="number" placeholder="Cantidad" />
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad" />
           </mat-form-field>
         </div>
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Secuencia</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(value)]="selectedSec">
-              @for(option of sec; track option.value) {
-              <mat-option [value]="option.value">{{
-                option.value
-              }}</mat-option>
-              }
+            <mat-select [(ngModel)]="selectedSec" name="secuencia">
+              <mat-option *ngFor="let option of sec" [value]="option.value">
+                {{ option.value }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
 
       <div class="m-t-12">
-        <button mat-flat-button color="primary" class="m-r-8">Agregar</button>
-        <button mat-stroked-button color="warn">Cancelar</button>
+        <button mat-flat-button color="primary" class="m-r-8" type="submit">Agregar</button>
+        <button mat-stroked-button color="warn" type="button" (click)="resetForm()">Cancelar</button>
       </div>
     </form>
   </mat-card-content>
@@ -52,50 +45,48 @@
   <mat-card-header>
     <mat-card-title class="m-b-0">Plan de Producción</mat-card-title>
   </mat-card-header>
-  <table  style="width: 100%; border-collapse: collapse; text-align: center;">
+  <table style="width: 100%; border-collapse: collapse; text-align: center;">
     <thead style="background-color: #f5f5f5;">
       <tr>
         <th style="padding: 8px;">Sec</th>
         <th style="padding: 8px;">Modelo</th>
-        
         <th style="padding: 8px;">Cantidad</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td style="padding: 8px;">1</td>
-  
-        <td style="padding: 8px;">Slider A</td>
-        
-        <td style="padding: 8px;">10</td>
-        
-      </tr>
-      <tr>
-        <td style="padding: 8px;">2</td>
-        
-        <td style="padding: 8px;">Slider B</td>
-        
-        <td style="padding: 8px;">5</td>
-        
-      </tr>
-      <tr>
-        <td style="padding: 8px;">3</td>
-        
-        <td style="padding: 8px;">Slider C</td>
-        
-        <td style="padding: 8px;">8</td>
-       
+      <tr *ngFor="let item of pedido">
+        <td style="padding: 8px;">{{ item.secuencia }}</td>
+        <td style="padding: 8px;">{{ item.modelo }}</td>
+        <td style="padding: 8px;">{{ item.cantidad }}</td>
       </tr>
     </tbody>
   </table>
-  
 </mat-card>
 
 <mat-card-content class="b-t-1">
-  
-    <div class="m-t-12">
-      <button mat-flat-button color="primary" class="m-r-8">Terminar</button>
-      
-    </div>
- 
+  <div class="m-t-12">
+    <button mat-flat-button color="primary" class="m-r-8" (click)="guardarPedido()">Terminar</button>
+  </div>
 </mat-card-content>
+
+
+<div *ngIf="alertaSecuencia" class="alerta">
+  La secuencia ya está asignada a otro pedido. Elige otra.
+</div>
+
+<!-- Estilos opcionales para resaltar la alerta -->
+<style>
+  .alerta {
+  position: fixed; /* La fija en la pantalla */
+  top: 10px; /* La ubica en la parte superior */
+  left: 50%; /* La centra horizontalmente */
+  transform: translateX(-50%); /* Ajusta el centrado */
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>
