@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
   @for(cardimg of cardimgs; track cardimg.imgSrc) {
   <div class="col-lg-4">
-    <mat-card class="cardWithShadow position-relative overflow-hidden">
+    <mat-card class="cardWithShadow position-relative overflow-hidden" (click)="navigateTo(cardimg.routerLink)" style="cursor: pointer;" >
       <div class="position-relative">
         <img
           mat-card-image
@@ -15,7 +15,7 @@
           
         </div>
       </div>
-
+      
       <mat-card-content class="p-y-24">
         <!-- <div class="user-category">
           <div class="m-b-20">
@@ -26,7 +26,7 @@
             >{{ cardimg.category }}</span
           >
         </div> -->
-        <mat-card-title class="m-t-2 "><a routerLink="/forms2" class="hover-text">{{
+        <mat-card-title class="m-t-2 "><a class="hover-text">{{
           cardimg.title
         }}</a></mat-card-title>
         <div class="d-flex align-items-center justify-content-center m-t-24">

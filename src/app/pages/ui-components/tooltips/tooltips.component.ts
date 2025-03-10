@@ -19,7 +19,7 @@ import autoTable from "jspdf-autotable";
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    CdkScrollable,
+    CdkScrollable, 
     MatButtonModule,
     MatTooltipModule, MatCardModule, MatInputModule, MatCheckboxModule,
   ],

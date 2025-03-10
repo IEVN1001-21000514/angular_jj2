@@ -33,11 +33,7 @@ export const navItems: NavItem[] = [
     iconName: 'solar:file-text-line-duotone',
     route: '/ui-components/menu',
   },*/
-  {
-    displayName: 'Tooltips',
-    iconName: 'solar:text-field-focus-line-duotone',
-    route: '/ui-components/tooltips',
-  },/*
+  /*
   {
     displayName: 'Forms',
     iconName: 'solar:file-text-line-duotone',
@@ -63,6 +59,16 @@ export const navItems: NavItem[] = [
     iconName: 'mingcute:inspect-line',
     route: '/ui-components/planProduccion',
   },
+  {
+    navCap: 'Descargas',
+    divider: true
+  },
+  {
+    displayName: 'Descargar PMP',
+    iconName: 'material-symbols:download',
+    route: '/ui-components/tooltips',
+  },
+ 
   {
     navCap: 'Auth',
     divider: true
