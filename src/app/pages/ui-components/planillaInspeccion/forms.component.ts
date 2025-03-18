@@ -7,12 +7,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { MatOptionModule } from '@angular/material/core';
+import { CommonModule } from '@angular/common';
 
-interface Defectos {
+interface Sliders {
   value: string;
 }
 
-interface Sliders {
+interface Defectos {
   value: string;
 }
 
@@ -20,6 +24,7 @@ interface Sliders {
   selector: 'app-forms',
   standalone: true,
   imports: [
+    CommonModule,
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
@@ -29,17 +34,19 @@ interface Sliders {
     MatCardModule,
     MatInputModule,
     MatCheckboxModule,
+    MatOptionModule,
   ],
   templateUrl: './forms.component.html',
 })
 
 export class AppForms3Component {
-
+  cantidad: number = 0;
+  selectedSlider: string;
+  selectedDefecto: string;
+  planilla: any[] = [];
   fechaHoraActual:string='';
 
-  constructor(){
-    this.actualizarFechaHora();
-  };
+ 
 
   actualizarFechaHora(){
     setInterval(() => {
@@ -92,9 +99,52 @@ export class AppForms3Component {
     { value: 'Yamaha R3' }
 ];
 
-  selectedSlider= this.slider[0].value;
+  constructor(private http: HttpClient) {
+    this.actualizarFechaHora();
+  }
 
-  selectedDefecto= this.defecto[0].value;
+  agregarPlanilla(cantidad: number, selectedSlider: string, selectedDefecto: string) {
+    const nuevoregistro = {
+      slider: this.selectedSlider,
+      defecto: this.selectedDefecto,
+      cantidad: this.cantidad,
+      fechaHora: this.fechaHoraActual
+    };
+
+    this.planilla.push({
+      slider: this.selectedSlider,
+      defecto: this.selectedDefecto,
+      cantidad: this.cantidad,
+      fechaHora: this.fechaHoraActual
+    });
+
+    console.log(this.planilla);
+    this.resetForm();
+  }
+
+  guardarPlanilla() {
+    this.http.post('http://localhost:3000/planilla', this.planilla).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  onAgregar(cantidad: number): void {
+    this.agregarPlanilla(this.cantidad, this.selectedSlider, this.selectedDefecto);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.cantidad = 0;
+    this.selectedSlider = '';
+    this.selectedDefecto = '';
+  }
+
+
+
 
   
 

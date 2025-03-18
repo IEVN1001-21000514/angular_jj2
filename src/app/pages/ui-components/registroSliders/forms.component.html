@@ -3,12 +3,12 @@
     <mat-card-title class="m-b-0">Registro de pedido de sliders</mat-card-title>
   </mat-card-header>
   <mat-card-content class="b-t-1">
-    <form (ngSubmit)="onAgregar(cantidad)">
+    <form (ngSubmit)="onAgregar()">
       <div class="row">
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Modelo Slider</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(ngModel)]="selectedSlider" name="modelo">
+            <mat-select [(ngModel)]="selectedSlider" name="modelo" required>
               <mat-option *ngFor="let option of slider" [value]="option.value">
                 {{ option.value }}
               </mat-option>
@@ -18,13 +18,13 @@
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Cantidad</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad" />
+            <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad" required />
           </mat-form-field>
         </div>
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Secuencia</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(ngModel)]="selectedSec" name="secuencia">
+            <mat-select [(ngModel)]="selectedSec" name="secuencia" required>
               <mat-option *ngFor="let option of sec" [value]="option.value">
                 {{ option.value }}
               </mat-option>
@@ -34,7 +34,9 @@
       </div>
 
       <div class="m-t-12">
-        <button mat-flat-button color="primary" class="m-r-8" type="submit">Agregar</button>
+        <button mat-flat-button color="primary" class="m-r-8" type="submit">
+          {{ editIndex === -1 ? 'Agregar' : 'Actualizar' }}
+        </button>
         <button mat-stroked-button color="warn" type="button" (click)="resetForm()">Cancelar</button>
       </div>
     </form>
@@ -51,13 +53,22 @@
         <th style="padding: 8px;">Sec</th>
         <th style="padding: 8px;">Modelo</th>
         <th style="padding: 8px;">Cantidad</th>
+        <th style="padding: 8px;">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of pedido">
+      <tr *ngFor="let item of pedido; let i = index">
         <td style="padding: 8px;">{{ item.secuencia }}</td>
         <td style="padding: 8px;">{{ item.modelo }}</td>
         <td style="padding: 8px;">{{ item.cantidad }}</td>
+        <td style="padding: 8px;">
+          <button mat-icon-button color="primary" (click)="editarRegistro(i)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="eliminarRegistro(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -69,24 +80,22 @@
   </div>
 </mat-card-content>
 
-
 <div *ngIf="alertaSecuencia" class="alerta">
   La secuencia ya está asignada a otro pedido. Elige otra.
 </div>
 
-<!-- Estilos opcionales para resaltar la alerta -->
 <style>
   .alerta {
-  position: fixed; /* La fija en la pantalla */
-  top: 10px; /* La ubica en la parte superior */
-  left: 50%; /* La centra horizontalmente */
-  transform: translateX(-50%); /* Ajusta el centrado */
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-align: center;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 </style>

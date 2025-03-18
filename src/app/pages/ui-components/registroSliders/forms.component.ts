@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
 
 interface Sliders {
   value: string;
@@ -35,15 +36,18 @@ interface Secuencia {
     MatInputModule,
     MatCheckboxModule,
     MatOptionModule,
+    MatIcon,
   ],
   templateUrl: './forms.component.html',
 })
+
 export class AppForms2Component {
   cantidad: number = 0;
-  selectedSlider: string;
-  selectedSec: number;
+  selectedSlider: string = '';
+  selectedSec: number = 1;
   pedido: any[] = [];
   alertaSecuencia: boolean = false;
+  editIndex: number = -1;
 
   slider: Sliders[] = [
     { value: '' },
@@ -79,51 +83,62 @@ export class AppForms2Component {
     this.resetForm();
   }
 
-  agregarPedido(cantidad: number, secuencia: number): void {
-    const existeSecuencia = this.pedido.some(p => p.secuencia === secuencia);
-    if (existeSecuencia) {
-      this.alertaSecuencia = true;
-      setTimeout(() => (this.alertaSecuencia = false), 5000);
-      //alert('La secuencia ya está asignada a otro pedido. Elige otra.');
-      return;
+  onAgregar(): void {
+    if (this.editIndex === -1) {
+      this.agregarPedido();
+    } else {
+      this.pedido[this.editIndex] = {
+        modelo: this.selectedSlider,
+        cantidad: this.cantidad,
+        secuencia: this.selectedSec,
+      };
+      this.editIndex = -1;
     }
-
-    const nuevoPedido = {
-      modelo: this.selectedSlider,
-      cantidad: cantidad,
-      secuencia: secuencia,
-    };
-    
-    this.pedido.push(nuevoPedido);
-    this.pedido.sort((a, b) => a.secuencia - b.secuencia);
-    console.log(this.pedido);
-  }
-
-  guardarPedido(): void {
-    const pedidoFinal = {
-      pedido: this.pedido,
-      fecha: new Date(),
-    };
-
-    this.http.post('http://localhost:5000/guardarPedido', pedidoFinal).subscribe(
-      (response) => {
-        console.log('Pedido guardado correctamente', response);
-        this.pedido = [];
-      },
-      (error) => {
-        console.error('Error al guardar el pedido', error);
-      }
-    );
-  }
-
-  onAgregar(cantidad: number): void {
-    this.agregarPedido(cantidad, this.selectedSec);
     this.resetForm();
   }
 
+  agregarPedido(): void {
+    const existeSecuencia = this.pedido.some(p => p.secuencia === this.selectedSec);
+    if (existeSecuencia) {
+      this.alertaSecuencia = true;
+      setTimeout(() => (this.alertaSecuencia = false), 5000);
+      return;
+    }
+    this.pedido.push({ modelo: this.selectedSlider, cantidad: this.cantidad, secuencia: this.selectedSec });
+    this.pedido.sort((a, b) => a.secuencia - b.secuencia);
+    console.log(this.pedido);
+    this.resetForm();
+  }
+
+  editarRegistro(index: number): void {
+    const item = this.pedido[index];
+    this.selectedSlider = item.modelo;
+    this.cantidad = item.cantidad;
+    this.selectedSec = item.secuencia;
+    this.editIndex = index;
+  }
+
+  eliminarRegistro(index: number): void {
+    this.pedido.splice(index, 1);
+    console.log("Lista de pedidos actualizada:", this.pedido);
+  }
+
+  guardarPedido(): void {
+    const pedidoFinal = { pedido: this.pedido, fecha: new Date() };
+    this.http.post('http://localhost:5000/guardarPedido', pedidoFinal).subscribe(
+      response => {
+        console.log('Pedido guardado correctamente', response);
+        this.pedido = [];
+      },
+      error => console.error('Error al guardar el pedido', error)
+    );
+
+  }
+
   resetForm(): void {
-    this.selectedSlider = this.slider[0].value;
-    this.selectedSec = this.sec[0].value;
+    this.selectedSlider = '';
+    this.selectedSec = 1;
     this.cantidad = 0;
+    this.editIndex = -1;
   }
 }

@@ -11,30 +11,30 @@ padding: 8px 0;
     <mat-card-title class="m-b-0">Registro Planilla de Inspección</mat-card-title>
   </mat-card-header>
   <mat-card-content class="b-t-1">
-    <form>
+    <form (ngSubmit)="onAgregar(cantidad)">
       <div class="row">
         
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Modelo Slider</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(value)]="selectedSlider">
-              @for(option of slider; track option.value) {
-              <mat-option [value]="option.value">{{
-                option.value
-              }}</mat-option>
-              }
+            <mat-select [(ngModel)]="selectedSlider" name="modelo">
+              
+              <mat-option *ngFor="let option of slider" [value]="option.value">
+                {{option.value}}
+              </mat-option>
+              
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-lg-6">
           <mat-label class="f-w-600 m-b-8 d-block">Defecto Encontrado</mat-label>
           <mat-form-field appearance="outline" class="w-100">
-            <mat-select [(value)]="selectedDefecto">
-              @for(option of defecto; track option.value) {
-              <mat-option [value]="option.value">{{
-                option.value
-              }}</mat-option>
-              }
+            <mat-select [(ngModel)]="selectedDefecto" name="defecto">
+             
+              <mat-option *ngFor="let option of defecto" [value]="option.value">
+                {{option.value}}
+              </mat-option>
+              
             </mat-select>
           </mat-form-field>
         </div>
@@ -42,15 +42,15 @@ padding: 8px 0;
           <!-- input -->
           <mat-label class="f-w-600 m-b-8 d-block">Cantidad</mat-label>
           <mat-form-field appearance="outline" class="w-100" color="primary">
-            <input matInput type="number" placeholder="Cantidad" />
+            <input matInput type="number" placeholder="Cantidad" [(ngModel)]="cantidad" name="cantidad"/>
           </mat-form-field>
         </div>
         
       </div>
 
       <div class="m-t-12">
-        <button mat-flat-button color="primary" class="m-r-8">Registrar</button>
-        <button mat-stroked-button color="warn">Cancelar</button>
+        <button mat-flat-button color="primary" class="m-r-8" type="submit">Registrar</button>
+        <button mat-stroked-button color="warn" type="button" (click)="resetForm()">Cancelar</button>
       </div>
     </form>
   </mat-card-content>
@@ -63,37 +63,19 @@ padding: 8px 0;
   <table  style="width: 100%; border-collapse: collapse; text-align: center;">
     <thead style="background-color: #f5f5f5;">
       <tr>
-        <th style="padding: 8px;">Sec</th>
         <th style="padding: 8px;">Modelo</th>
         <th style="padding: 8px;">Defecto</th>
         <th style="padding: 8px;">Cantidad</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td style="padding: 8px;">1</td>
-  
-        <td style="padding: 8px;">Slider A</td>
-        <td style="padding: 8px;">Falta de pintura</td>
-        <td style="padding: 8px;">10</td>
+      <tr *ngFor="let item of planilla">
+        <td style="padding: 8px;">{{item.slider}}</td>
+        <td style="padding: 8px;">{{item.defecto}}</td>
+        <td style="padding: 8px;">{{item.cantidad}}</td>
         
       </tr>
-      <tr>
-        <td style="padding: 8px;">2</td>
-        
-        <td style="padding: 8px;">Slider B</td>
-        <td style="padding: 8px;">Falta de pintura</td>
-        <td style="padding: 8px;">5</td>
-        
-      </tr>
-      <tr>
-        <td style="padding: 8px;">3</td>
-        
-        <td style="padding: 8px;">Slider C</td>
-        <td style="padding: 8px;">Falta de pintura</td>
-        <td style="padding: 8px;">8</td>
-       
-      </tr>
+      
     </tbody>
   </table>
 </mat-card>
@@ -101,7 +83,6 @@ padding: 8px 0;
   
   <div class="m-t-12">
     <button mat-flat-button color="primary" class="m-r-8">Enviar</button>
-    
   </div>
 
 </mat-card-content>
