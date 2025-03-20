@@ -9,7 +9,7 @@
           <mat-label class="f-w-600 m-b-8 d-block">Modelo Slider</mat-label>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [(ngModel)]="selectedSlider" name="modelo" required>
-              <mat-option *ngFor="let option of slider" [value]="option.value">
+              <mat-option *ngFor="let option of slider" [value]="option.id">
                 {{ option.value }}
               </mat-option>
             </mat-select>
@@ -25,8 +25,8 @@
           <mat-label class="f-w-600 m-b-8 d-block">Secuencia</mat-label>
           <mat-form-field appearance="outline" class="w-100">
             <mat-select [(ngModel)]="selectedSec" name="secuencia" required>
-              <mat-option *ngFor="let option of sec" [value]="option.value">
-                {{ option.value }}
+              <mat-option *ngFor="let secuencia of [1, 2, 3, 4, 5]" [value]="secuencia">
+                {{ secuencia }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -59,13 +59,10 @@
     <tbody>
       <tr *ngFor="let item of pedido; let i = index">
         <td style="padding: 8px;">{{ item.secuencia }}</td>
-        <td style="padding: 8px;">{{ item.modelo }}</td>
+        <td style="padding: 8px;">{{ getSliderValue(item.id_slider) }}</td>
         <td style="padding: 8px;">{{ item.cantidad }}</td>
         <td style="padding: 8px;">
-          <button mat-icon-button color="primary" (click)="editarRegistro(i)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="eliminarRegistro(i)">
+          <button mat-icon-button color="warn" (click)="item.id_registroPedido ? eliminarRegistro(item.id_registroPedido) : null">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
@@ -76,7 +73,7 @@
 
 <mat-card-content class="b-t-1">
   <div class="m-t-12">
-    <button mat-flat-button color="primary" class="m-r-8" (click)="guardarPedido()">Terminar</button>
+    <button mat-flat-button color="primary" class="m-r-8" (click)="terminarPedido()">Terminar</button>
   </div>
 </mat-card-content>
 

@@ -14,9 +14,16 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 interface Sliders {
+  id: number;
   value: string;
 }
 
+interface RegistroPedido{
+  id_registroPedido?:number;
+  id_slider:number;
+  cantidad:number;
+  secuencia:number;
+}
 interface Secuencia {
   value: number;
 }
@@ -43,61 +50,71 @@ interface Secuencia {
 
 export class AppForms2Component {
   cantidad: number = 0;
-  selectedSlider: string = '';
+  selectedSlider: number | null = null;
   selectedSec: number = 1;
-  pedido: any[] = [];
+  pedido: RegistroPedido[] = [];
   alertaSecuencia: boolean = false;
   editIndex: number = -1;
 
-  slider: Sliders[] = [
-    { value: '' },
-    { value: 'Bajaj Dominar' },
-    { value: 'Bajaj Pulsar 200 NS' },
-    { value: 'Bajaj Pulsar N 250' },
-    { value: 'Honda CB 1' },
-    { value: 'Honda CB 190' },
-    { value: 'Honda XRE - 300' },
-    { value: 'Honda XR - 190' },
-    { value: 'Honda XR - 190 Jaula' },
-    { value: 'Italika 150 Z' },
-    { value: 'Italika 200 Z' },
-    { value: 'Italika 250 Z' },
-    { value: 'Italika 250 Z - 2020' },
-    { value: 'Italika DM 200' },
-    { value: 'Italika FT 150 TS' },
-    { value: 'Italika RT 200' },
-    { value: 'Italika Vort - X' },
-    { value: 'Italika Vort - X 300' },
-    { value: 'Susuki Gixxer SF' },
-    { value: 'Susuki Gixxer Street Sport' },
-    { value: 'Universal' },
-    { value: 'Vento Nitrox' },
-    { value: 'Vento Tornado' },
-    { value: 'Yamaha FZ 2.0' },
-    { value: 'Yamaha R3' },
-  ];
+  slider: Sliders[] = [];
 
   sec: Secuencia[] = Array.from({ length: 17 }, (_, i) => ({ value: i + 1 }));
 
   constructor(private http: HttpClient) {
     this.resetForm();
+    this.obtenerSliders();
+    this.obtenerPedidos();
+  }
+
+  obtenerSliders(): void {
+    this.http.get<Sliders[]>('http://localhost:5000/obtenerSliders')
+      .subscribe(data => this.slider = data);
+  }
+
+  obtenerPedidos(): void {
+    this.http.get<RegistroPedido[]>('http://localhost:5000/obtenerRegistroPedidos')
+      .subscribe(data => this.pedido = data);
   }
 
   onAgregar(): void {
-    if (this.editIndex === -1) {
-      this.agregarPedido();
-    } else {
-      this.pedido[this.editIndex] = {
-        modelo: this.selectedSlider,
-        cantidad: this.cantidad,
-        secuencia: this.selectedSec,
-      };
-      this.editIndex = -1;
-    }
+    if (this.selectedSlider === null) return;
+
+    const nuevoRegistro: RegistroPedido = {
+      id_slider: this.selectedSlider,
+      cantidad: this.cantidad,
+      secuencia: this.selectedSec,
+    };
+
+    this.http.post('http://localhost:5000/guardarRegistroPedido', nuevoRegistro).subscribe(
+      response => {
+        console.log('Registro guardado', response);
+        this.obtenerPedidos(); 
+      },
+      error => console.error('Error al guardar', error)
+    );
+
     this.resetForm();
   }
 
-  agregarPedido(): void {
+  eliminarRegistro(id_registroPedido: number): void {
+    this.http.delete(`http://localhost:5000/eliminarRegistroPedido/${id_registroPedido}`)
+      .subscribe(() => {
+        console.log(`Registro ${id_registroPedido} eliminado`);
+        this.obtenerPedidos();
+      });
+  }
+
+  terminarPedido(): void {
+    this.http.post('http://localhost:5000/crearPedido', {}).subscribe(
+      response => {
+        console.log('Pedido finalizado', response);
+        this.pedido = [];
+      },
+      error => console.error('Error al finalizar el pedido', error)
+    );
+  }
+
+  /* agregarPedido(): void {
     const existeSecuencia = this.pedido.some(p => p.secuencia === this.selectedSec);
     if (existeSecuencia) {
       this.alertaSecuencia = true;
@@ -116,27 +133,16 @@ export class AppForms2Component {
     this.cantidad = item.cantidad;
     this.selectedSec = item.secuencia;
     this.editIndex = index;
-  }
+  } */
 
-  eliminarRegistro(index: number): void {
-    this.pedido.splice(index, 1);
-    console.log("Lista de pedidos actualizada:", this.pedido);
-  }
-
-  guardarPedido(): void {
-    const pedidoFinal = { pedido: this.pedido, fecha: new Date() };
-    this.http.post('http://localhost:5000/guardarPedido', pedidoFinal).subscribe(
-      response => {
-        console.log('Pedido guardado correctamente', response);
-        this.pedido = [];
-      },
-      error => console.error('Error al guardar el pedido', error)
-    );
-
-  }
+    getSliderValue(id_slider: number | undefined): string {
+      const sliderEncontrado = this.slider.find(s => s.id === (id_slider ?? 0));
+      return sliderEncontrado ? sliderEncontrado.value : 'Desconocido';
+    }
+  
 
   resetForm(): void {
-    this.selectedSlider = '';
+    this.selectedSlider = null;
     this.selectedSec = 1;
     this.cantidad = 0;
     this.editIndex = -1;

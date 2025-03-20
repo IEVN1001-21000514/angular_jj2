@@ -38,7 +38,7 @@ interface Defectos {
   ],
   templateUrl: './forms.component.html',
 })
-
+ 
 export class AppForms3Component {
   cantidad: number = 0;
   selectedSlider: string;
@@ -142,10 +142,5 @@ export class AppForms3Component {
     this.selectedSlider = '';
     this.selectedDefecto = '';
   }
-
-
-
-
-  
 
 }
