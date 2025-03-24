@@ -1,0 +1,23 @@
+<table mat-table [dataSource]="dataSource">
+    <!-- Nombre del Slider -->
+    <ng-container matColumnDef="nombre_slider">
+      <th mat-header-cell *matHeaderCellDef> Nombre del Slider </th>
+      <td mat-cell *matCellDef="let element"> {{ element.nombreSlider }} </td>
+    </ng-container>
+  
+    <!-- Secuencia -->
+    <ng-container matColumnDef="secuencia">
+      <th mat-header-cell *matHeaderCellDef> Secuencia </th>
+      <td mat-cell *matCellDef="let element"> {{ element.secuencia }} </td>
+    </ng-container>
+  
+    <!-- Cantidad -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{ element.cantidad }} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

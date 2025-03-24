@@ -64,15 +64,15 @@ export const navItems: NavItem[] = [
     divider: true
   },
   {
-    displayName: 'Descargar PMP',
-    iconName: 'material-symbols:download',
+    displayName: 'Lista Pedidos',
+    iconName: 'solar-archive-down-minimlistic-linear',
     route: '/ui-components/tooltips',
   },
  
   {
     navCap: 'Auth',
     divider: true
-  },
+  }, /*
   {
     displayName: 'Login',
     iconName: 'solar:login-3-line-duotone',
@@ -86,7 +86,7 @@ export const navItems: NavItem[] = [
   {
     navCap: 'Extra',
     divider: true
-  },
+  }, */
   {
     displayName: 'Icons',
     iconName: 'solar:sticker-smile-circle-2-line-duotone',

@@ -11,6 +11,8 @@ import { AppTablesComponent } from './tables/tables.component';
 import { AppTables2Component } from './planProduccion/tables.component';
 import { AppForms2Component } from './registroSliders/forms.component';
 import { AppForms3Component } from './planillaInspeccion/forms.component';
+import { PedidoDetallesComponent } from './pedido-detalles/pedido-detalles.component';
+
 
 export const UiComponentsRoutes: Routes = [
   {
@@ -47,6 +49,10 @@ export const UiComponentsRoutes: Routes = [
       {
         path: 'planillaInspeccion',
         component: AppForms3Component,
+      },
+      {
+        path: 'pedido-detalles/:numero_pedido',
+        component: PedidoDetallesComponent,
       },
       {
         path: 'tables',

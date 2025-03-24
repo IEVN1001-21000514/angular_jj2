@@ -1,25 +1,24 @@
 <div class="container">
   <h2>Lista de Pedidos</h2>
-  <table class="pedido-table">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Tamaño</th>
-        <th>Ingredientes</th>
-        <th>Cantidad</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let pedido of pedidos">
-        <td>{{ pedido.cliente }}</td>
-        <td>{{ pedido.tamano }}</td>
-        <td>{{ pedido.ingredientes }}</td>
-        <td>{{ pedido.cantidad }}</td>
-        <td>{{ pedido.subtotal }}</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <button (click)="generarPDF()">Descargar PDF</button>
+  
+  <div class="row justify-content-center">
+    <div class="col-lg-4" *ngFor="let pedido of uniquePedidos">
+      <mat-card class="cardWithShadow position-relative overflow-hidden align-items-center justify-content-center" 
+                style="cursor: pointer;" 
+                (click)="verDetalles(pedido.numero_pedido)">
+        <mat-card-content class="p-y-24">
+          <mat-card-title class="m-t-2 ">
+            Pedido: {{ pedido.numero_pedido }}
+          </mat-card-title>
+          <div class="d-flex align-items-center justify-content-center m-t-24">
+            <div class="d-flex align-items-center">
+              <div>
+                <p class="justify-content-center m-t-24">Fecha: {{ pedido.fechas[0] | date: 'dd - MM - yyyy' }}</p>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
 </div>

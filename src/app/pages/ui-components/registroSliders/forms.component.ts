@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { MatOptionModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { PedidoService } from 'src/app/services/pedidos.service';
+
 
 interface Sliders {
   id: number;
@@ -55,9 +57,7 @@ export class AppForms2Component {
   pedido: RegistroPedido[] = [];
   alertaSecuencia: boolean = false;
   editIndex: number = -1;
-
   slider: Sliders[] = [];
-
   sec: Secuencia[] = Array.from({ length: 17 }, (_, i) => ({ value: i + 1 }));
 
   constructor(private http: HttpClient) {
