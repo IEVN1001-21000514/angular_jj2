@@ -15,10 +15,11 @@ interface RegistroPedido {
 }
 
 interface Pedido {
-  id_pedido?: number; 
+  id_pedido?: number;
   id_registroPedido: number;
   fecha_registro: string;
-  numero_pedido: number;  
+  numero_pedido: number;
+  estado: string;
 }
 
 @Injectable({
@@ -30,33 +31,30 @@ export class PedidoService {
   constructor(private http: HttpClient) {}
 
   obtenerSliders(): Observable<Sliders[]> {
-       return this.http.get<Sliders[]>(`${this.apiUrl}/obtenerSliders`);
-     }
+    return this.http.get<Sliders[]>(`${this.apiUrl}/obtenerSliders`);
+  }
 
   guardarRegistroPedido(pedido: RegistroPedido): Observable<any> {
     return this.http.post(`${this.apiUrl}/guardarRegistroPedido`, pedido);
   }
 
   actualizarRegistroPedido(pedido: RegistroPedido): Observable<any> {
-    return this.http.put(`${this.apiUrl}/actualizarRegistroPedido`, pedido);  
+    return this.http.put(`${this.apiUrl}/actualizarRegistroPedido`, pedido);
   }
 
   eliminarRegistroPedido(id_registroPedido: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/eliminarRegistroPedido/${id_registroPedido}`);
   }
 
-  obtener_pedido(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/obtenerPedidos`);
+  obtener_pedido(): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(`${this.apiUrl}/obtenerPedidos`);
   }
 
   terminarPedido(): Observable<any> {
     return this.http.post(`${this.apiUrl}/crearPedido`, {});
   }
 
-  // Este método obtiene los registros de un pedido por numero_pedido
-  obtener_registros_por_numero_pedido(numero_pedido: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/obtenerRegistrosPorNumeroPedido/${numero_pedido}`);
+  obtener_registros_por_numero_pedido(numero_pedido: string): Observable<RegistroPedido[]> {
+    return this.http.get<RegistroPedido[]>(`${this.apiUrl}/obtenerRegistrosPorNumeroPedido/${numero_pedido}`);
   }
-  
-
 }
