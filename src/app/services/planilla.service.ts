@@ -27,7 +27,8 @@ interface RegistroPlanilla {
 })
 
 export class PlanillaService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'https://api-jjdis.onrender.com';
+
   constructor(private http: HttpClient) {}
 
   obtenerSliders(): Observable<Sliders[]> {
@@ -38,7 +39,6 @@ export class PlanillaService {
     return this.http.get<Defectos[]>(`${this.apiUrl}/obtenerDefectos`);
   }
 
-  
   obtenerPlanilla(): Observable<RegistroPlanilla[]> {
     return this.http.get<RegistroPlanilla[]>(`${this.apiUrl}/obtenerRegistroPlanilla`);
   }

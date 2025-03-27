@@ -14,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { PedidoService } from 'src/app/services/pedidos.service';
 
-
 interface Sliders {
   id: number;
   value: string;
@@ -26,6 +25,7 @@ interface RegistroPedido{
   cantidad:number;
   secuencia:number;
 }
+
 interface Secuencia {
   value: number;
 }
@@ -74,6 +74,7 @@ export class AppForms2Component {
   obtenerPedidos(): void {
     this.http.get<RegistroPedido[]>('http://localhost:5000/obtenerRegistroPedidos')
       .subscribe(data => this.pedido = data);
+      this.pedido.sort((a, b) => a.secuencia - b.secuencia);
   }
 
   onAgregar(): void {

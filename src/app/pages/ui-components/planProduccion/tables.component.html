@@ -1,27 +1,55 @@
-<mat-card class="cardWithShadow theme-card">
+<mat-form-field appearance="outline">
+  <mat-label>Selecciona un pedido</mat-label>
+  <mat-select [formControl]="pedidoSeleccionado" (selectionChange)="cargarPedido()">
+    <mat-option *ngFor="let pedido of uniquePedidos" [value]="pedido.numero_pedido">
+      {{ pedido.numero_pedido }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-card *ngIf="registrosPedido.length > 0" class="cardWithShadow theme-card">
   <mat-card-header>
-    <mat-card-title class="m-b-0">Plan de Producción</mat-card-title>
+    <mat-card-title class="m-b-0">Plan de Producción - Pedido {{ pedidoSeleccionado.value }}</mat-card-title>
   </mat-card-header>
-  <table style="width: 100%; border-collapse: collapse; text-align: center;">
-    <thead style="background-color: #f5f5f5;">
-      <tr>
-        <th style="padding: 8px;">Sec</th>
-        <th style="padding: 8px;">Modelo</th>
-        <th style="padding: 8px;">Cantidad</th>
-        <th style="padding: 8px;">Acciones</th>
-      </tr>
+
+  <table mat-table [dataSource]="registrosPedido" class="mat-elevation-z8">
+    <!-- Secuencia Column -->
+    <ng-container matColumnDef="Secuencia">
+      <th mat-header-cell *matHeaderCellDef> Secuencia </th>
+      <td mat-cell *matCellDef="let element"> {{ element.secuencia }} </td>
+    </ng-container>
+
+    <!-- Modelo Column -->
+    <ng-container matColumnDef="Modelo">
+      <th mat-header-cell *matHeaderCellDef> Modelo </th>
+      <td mat-cell *matCellDef="let element"> {{ element.nombreSlider }} </td>
+    </ng-container>
+
+    <!-- Cantidad Column -->
+    <ng-container matColumnDef="Cantidad">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{ element.cantidad }} </td>
+    </ng-container>
+
+    <!-- Estatus Column -->
+    <ng-container matColumnDef="Estatus">
+      <th mat-header-cell *matHeaderCellDef> Estatus </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-select [(value)]="estatus[element.secuencia]" (selectionChange)="guardarEstatus(element)">
+          <mat-option *ngFor="let status of estatusList" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <!-- Header Row -->
+    <thead>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     </thead>
+    <!-- Data Row -->
     <tbody>
-      <tr>
-        <td style="padding: 8px;"></td>
-        <td style="padding: 8px;"></td>
-        <td style="padding: 8px;"></td>
-        <td style="padding: 8px;">
-          <button mat-icon-button color="warn">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </tbody>
   </table>
 </mat-card>

@@ -13,6 +13,7 @@ interface RegistroPedido {
   cantidad: number;
   secuencia: number;
 }
+
 interface Pedido {
   id_pedido?: number; 
   id_registroPedido: number;
@@ -24,7 +25,7 @@ interface Pedido {
   providedIn: 'root',
 })
 export class PedidoService {
-  private apiUrl = 'http://localhost:5000';
+  private apiUrl = 'https://api-jjdis.onrender.com';
 
   constructor(private http: HttpClient) {}
 
