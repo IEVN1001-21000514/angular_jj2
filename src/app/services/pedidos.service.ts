@@ -30,8 +30,8 @@ export class PedidoService {
   constructor(private http: HttpClient) {}
 
   obtenerSliders(): Observable<Sliders[]> {
-    return this.http.get<Sliders[]>(`${this.apiUrl}/obtenerSliders`);
-  }
+       return this.http.get<Sliders[]>(`${this.apiUrl}/obtenerSliders`);
+     }
 
   guardarRegistroPedido(pedido: RegistroPedido): Observable<any> {
     return this.http.post(`${this.apiUrl}/guardarRegistroPedido`, pedido);

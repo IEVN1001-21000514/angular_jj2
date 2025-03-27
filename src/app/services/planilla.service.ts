@@ -34,7 +34,6 @@ export class PlanillaService {
  obtenerSliders(): Observable<Sliders[]> {
      return this.http.get<Sliders[]>(`${this.apiUrl}/obtenerSliders`);
    }
-  
 
   obtenerDefectos(): Observable<Defectos[]> {
     return this.http.get<Defectos[]>(`${this.apiUrl}/obtenerDefectos`);
