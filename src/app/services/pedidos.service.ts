@@ -57,4 +57,14 @@ export class PedidoService {
   obtener_registros_por_numero_pedido(numero_pedido: string): Observable<RegistroPedido[]> {
     return this.http.get<RegistroPedido[]>(`${this.apiUrl}/obtenerRegistrosPorNumeroPedido/${numero_pedido}`);
   }
+
+
+  obtenerRegistrosPendientes(): Observable<RegistroPedido[]> {
+    return this.http.get<RegistroPedido[]>(`${this.apiUrl}/obtenerRegistroPedidos`);
+  }
+  
+  asignarPedido(id_registroPedido: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/asignarPedido/${id_registroPedido}`, { estado: 'asignado' });
+  }
+
 }

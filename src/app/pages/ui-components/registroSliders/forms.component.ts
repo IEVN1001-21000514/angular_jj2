@@ -24,6 +24,10 @@ interface RegistroPedido {
   secuencia: number;
 }
 
+interface Secuencia {
+  value: number;
+}
+
 @Component({
   selector: 'app-forms',
   standalone: true,
@@ -64,15 +68,8 @@ export class AppForms2Component {
   }
 
   obtenerPedidos(): void {
-    this.pedidoService.obtener_pedido().subscribe(data => {
+    this.pedidoService.obtenerRegistrosPendientes().subscribe(data => {
       this.pedido = data
-        .filter(p => p.estado === 'pendiente') // Filtra solo los pedidos pendientes
-        .map(p => ({
-          id_registroPedido: p.id_registroPedido,
-          id_slider: p.id_registroPedido,
-          cantidad: 0, // Valor temporal, actualiza con obtener_registros_por_numero_pedido si es necesario
-          secuencia: 0  // Igual que cantidad
-        }));
     });
   }
 
